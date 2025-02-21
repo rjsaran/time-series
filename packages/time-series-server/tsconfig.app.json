@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/out-tsc",
+    "module": "commonjs",
+    "types": ["node", "jest"],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "target": "ES2023",
+    "sourceMap": true,
+    "incremental": true
+  },
+  "include": ["./src/**/*.ts"]
+}

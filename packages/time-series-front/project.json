@@ -1,0 +1,9 @@
+{
+  "name": "time-series-front",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/time-series-front/src",
+  "projectType": "application",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project time-series-front --web",
+  "targets": {}
+}
