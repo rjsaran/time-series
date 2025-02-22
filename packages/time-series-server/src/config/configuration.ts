@@ -22,7 +22,7 @@ export interface Configuration {
 export const configuration = (): Configuration => {
   return {
     server: {
-      port: parseInt(process.env.PORT || '3000', 10),
+      port: parseInt(process.env.PORT || '4004', 10),
     },
     auth: {
       jwt: {

@@ -1,14 +1,16 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../dist/out-tsc",
+    "outDir": "./dist",
     "module": "commonjs",
     "types": ["node", "jest"],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "target": "ES2023",
     "sourceMap": true,
-    "incremental": true
+    "incremental": true,
+    "rootDir": "./src"
   },
-  "include": ["./src/**/*.ts"]
+  "include": ["./src/**/*.ts"],
+  "exclude": ["node_modules", "dist"]
 }

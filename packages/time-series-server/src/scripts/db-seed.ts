@@ -6,7 +6,7 @@ import { configuration } from '../config/configuration';
 
 async function createDatabase() {
   const app = await NestFactory.createApplicationContext(
-    ConfigModule.forRoot({ load: [configuration] }),
+    ConfigModule.forRoot({ load: [configuration] })
   );
   const configService = app.get(ConfigService);
 
@@ -25,7 +25,7 @@ async function createDatabase() {
   await client.connect();
 
   const result = await client.query(
-    `SELECT 1 FROM pg_database WHERE datname='${databaseName}'`,
+    `SELECT 1 FROM pg_database WHERE datname='${databaseName}'`
   );
 
   if (result.rowCount === 0) {

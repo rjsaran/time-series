@@ -47,3 +47,6 @@ vite.config.*.timestamp*
 vitest.config.*.timestamp*
 
 **/**/.env
+**/**/large_data.csv
+
+**/**/.tsconfig.app.tsbuildinfo

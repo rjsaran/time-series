@@ -1,96 +1,198 @@
-# TimeSeries
+# Time-Series Application
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+This project is an Nx monorepo containing a frontend (React + Vite) and a backend (NestJS). It also includes a PostgreSQL database managed via Docker Compose.
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is ready ✨.
+## Prerequisites
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/intro#learn-nx?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+- Node.JS (version >= v20.18.0)
+- NPM (Node Package Manager)
+- Docker (if you want to run the application with Docker)
+- Postgres (if you want to run the application without Docker)
 
-## Run tasks
+## Setup
 
-To run tasks with Nx use:
-
-```sh
-npx nx <target> <project-name>
-```
-
-For example:
+### 1. Clone the repository:
 
 ```sh
-npx nx build myproject
+git clone https://github.com/rjsaran/time-series.git
 ```
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
+### 2. Navigate to the project directory:
 
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Add new projects
-
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
-
-To install a new plugin you can use the `nx add` command. Here's an example of adding the React plugin:
-```sh
-npx nx add @nx/react
+```bash
+cd time-series
 ```
 
-Use the plugin's generator to create new projects. For example, to create a new React app or library:
+### 3. Install Dependencies
+
+Install dependencies using npm:
 
 ```sh
-# Generate an app
-npx nx g @nx/react:app demo
-
-# Generate a library
-npx nx g @nx/react:lib some-lib
+npm install
 ```
 
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
+### 4. Configure Environment Variables
 
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+Both the frontend and backend require environment variables to be set. Copy the example .env files and modify them as needed.
 
-## Set up CI!
-
-### Step 1
-
-To connect to Nx Cloud, run the following command:
+For the backend:
 
 ```sh
-npx nx connect
+cp packages/time-series-server/.env.example packages/time-series-server/.env
 ```
 
-Connecting to Nx Cloud ensures a [fast and scalable CI](https://nx.dev/ci/intro/why-nx-cloud?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) pipeline. It includes features such as:
-
-- [Remote caching](https://nx.dev/ci/features/remote-cache?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task distribution across multiple machines](https://nx.dev/ci/features/distribute-task-execution?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Automated e2e test splitting](https://nx.dev/ci/features/split-e2e-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task flakiness detection and rerunning](https://nx.dev/ci/features/flaky-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-### Step 2
-
-Use the following command to configure a CI workflow for your workspace:
+For the frontend:
 
 ```sh
-npx nx g ci-workflow
+cp packages/time-series-front/.env.example packages/time-series-front/.env
 ```
 
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+Modify the .env files with your configuration settings.
 
-## Install Nx Console
+## Running the Project
 
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
+### 1. Start PostgreSQL Database
 
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+Ensure Docker is installed and running. Then, start PostgreSQL:
 
-## Useful links
+```sh
+npm run start:db
+```
 
-Learn more:
+This runs PostgreSQL on port 5433 (update .env if needed).
 
-- [Learn more about this workspace setup](https://nx.dev/getting-started/intro#learn-nx?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+**Stop the Database**
 
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+```sh
+npm run stop:db
+```
+
+### 2. Seed the Database
+
+Run the following command to seed the database: Ensure db is running.
+
+```sh
+npm run db:seed
+```
+
+### 3. Start Frontend and Backend Servers
+
+To start both servers: Will also run docker postgresql database
+
+```sh
+npm run start:all
+```
+
+**Default Ports:**
+
+Frontend: 4200
+
+Backend: 4004
+
+If needed, modify the .env files to change the ports.
+
+## Additional Commands
+
+You can also use the following Nx commands to build and serve the applications separately:
+
+### Generate Sample CSV Data
+
+To generate sample CSV data, run:
+
+```sh
+npm run generate:csv
+```
+
+### Start Backend Only
+
+```sh
+npx nx serve time-series-server
+```
+
+### Start Frontend Only
+
+```sh
+npx nx serve time-series-front
+```
+
+### Build Backend Only
+
+```sh
+npx nx build time-series-server
+```
+
+### Build Frontend Only
+
+```sh
+npx nx build time-series-front
+```
+
+## 📄 API Documentation
+
+### Upload a CSV file
+
+```sh
+POST /api/v1/time-series/upload/csv
+```
+
+### Export cleaned data
+
+```sh
+GET /api/v1/time-series/export/csv
+```
+
+### List cleaned paginated data
+
+```sh
+GET /api/v1/time-series?limit=100&sort_order=ASC&page=1
+```
+
+### Get metrics
+
+```sh
+POST /api/v1/time-series/metrics
+```
+
+#### Request Body:
+
+```json
+{
+  "filter": {
+    "from": "2024-11-01T18:30:00.000Z",
+    "to": "2025-12-31T18:30:00.000Z"
+  },
+  "group": {
+    "by": { "interval": "daily" },
+    "computes": [
+      {
+        "type": "sum",
+        "path": "amount"
+      }
+    ]
+  }
+}
+```
+
+## 📸 Application States
+
+### **1️⃣ Empty State**
+
+![Empty State](assets/empty.png)
+
+---
+
+### **2️⃣ Upload Button Click State**
+
+![Upload Button Click](assets/upload.png)
+
+---
+
+### **3️⃣ After Upload - Table Display**
+
+![Table State](assets/table.png)
+
+---
+
+### **4️⃣ Charts View**
+
+![Charts View](assets/chart.png)

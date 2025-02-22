@@ -8,30 +8,48 @@
     "build": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "webpack-cli build",
-        "args": ["node-env=production"]
+        "cwd": "packages/time-series-server",
+        "commands": ["nest build  --path ./tsconfig.app.json"]
       },
       "configurations": {
         "development": {
           "args": ["node-env=development"]
+        },
+        "production": {
+          "args": ["node-env=production"]
         }
       }
     },
-    "serve": {
-      "executor": "@nx/js:node",
-      "defaultConfiguration": "development",
+    "serve:dev": {
+      "executor": "nx:run-commands",
       "dependsOn": ["build"],
       "options": {
-        "buildTarget": "time-series-server:build",
-        "runBuildTargetDependencies": false
-      },
-      "configurations": {
-        "development": {
-          "buildTarget": "time-series-server:build:development"
-        },
-        "production": {
-          "buildTarget": "time-series-server:build:production"
-        }
+        "cwd": "packages/time-series-server",
+        "command": "NODE_ENV=development && nest start --watch"
+      }
+    },
+    "serve": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "cwd": "packages/time-series-server",
+        "command": "nest start"
+      }
+    },
+    "db:seed": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "cwd": "packages/time-series-server",
+        "command": "node dist/scripts/db-seed.js"
+      }
+    },
+    "generate:csv": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "cwd": "packages/time-series-server",
+        "command": "node dist/scripts/generate-csv.js"
       }
     }
   }

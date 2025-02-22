@@ -83,6 +83,10 @@
     "typeorm": "^0.3.20"
   },
   "scripts": {
-    "start": "npx nx run-many -t serve -p time-series-server time-series-front"
+    "start:db": "docker-compose up -d ",
+    "stop:db": "docker-compose down -v",
+    "start:all": "docker-compose up -d && npx nx run-many -t serve --all",
+    "db:seed": "npx nx run time-series-server:db:seed",
+    "generate:csv": "npx nx run time-series-server:generate:csv"
   }
 }
