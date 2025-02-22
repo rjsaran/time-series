@@ -28,7 +28,7 @@ cd time-series
 Install dependencies using npm:
 
 ```sh
-npm install --legacy-peer-deps
+npm install
 ```
 
 ### 4. Configure Environment Variables
