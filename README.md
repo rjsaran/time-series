@@ -216,7 +216,7 @@ POST /api/v1/time-series/metrics
 
 ## Backend Project Architecture
 
-This project is built using TypeScript and follows a modular architecture. It uses NesyJs for dependency injection, TypeORM for database interactions.
+This project is built using TypeScript and follows a modular architecture. It uses NestJs for dependency injection, TypeORM for database interactions.
 
 ### Folder Structure
 
@@ -250,3 +250,23 @@ This folder contains common functionalities used throughout the application:
 #### `scripts/`
 
 This folder contains scripts for database setup and seeding.
+
+## Frontend Project Architecture
+
+This project is built using ReactJs and follows a modular architecture.
+
+### Folder Structure
+
+The project is organized into the following main directories:
+
+#### `pages/`
+
+Contains high-level views and route-specific components.
+
+#### `components/`
+
+Stores reusable UI components used across the application.
+
+#### `services/`
+
+Manages API calls and business logic related to data fetching and state management.
