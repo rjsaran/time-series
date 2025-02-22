@@ -13,8 +13,8 @@ import { Response } from 'express';
 import { diskStorage } from 'multer';
 
 import { TimeSeriesService } from './services/time-series.service';
-import { ListTimeSeriesDTO } from './dto/list-time-series.dto';
-import { GetMetricsDTO } from './dto/time-series-metrics.dto';
+import { ListTimeSeriesDTO } from './dtos/list-time-series.dto';
+import { GetMetricsDTO } from './dtos/time-series-metrics.dto';
 import { TimeSeriesMetricService } from './services/time-series-metrics.service';
 
 @Controller('time-series')

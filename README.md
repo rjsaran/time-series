@@ -127,6 +127,23 @@ npx nx build time-series-server
 npx nx build time-series-front
 ```
 
+## 📊 CSV Data Format
+
+The CSV file should have the following columns:
+
+```sh
+date,amount,product,category
+```
+
+Example:
+
+```sh
+2024-02-01,100,ProductA,Category1
+2024-02-02,150,ProductB,Category2
+```
+
+[Sample CSV](assets/data.csv)
+
 ## 📄 API Documentation
 
 ### Upload a CSV file
@@ -196,3 +213,40 @@ POST /api/v1/time-series/metrics
 ### **4️⃣ Charts View**
 
 ![Charts View](assets/chart.png)
+
+## Backend Project Architecture
+
+This project is built using TypeScript and follows a modular architecture. It uses NesyJs for dependency injection, TypeORM for database interactions.
+
+### Folder Structure
+
+The project is organized into the following main directories:
+
+#### `time-series/`
+
+This folder contains the main application logic.
+
+- **dtos/**: Data Transfer Objects used for validation and structuring data.
+- **services/**: Services that contain the business logic.
+- **controllers**: Controllers that handle incoming HTTP requests and return responses.
+- **entity**: TypeORM entities that define the database schema.
+
+#### `config/`
+
+- **index.ts**: Exports the appropriate configuration based on the current environment. The application reads configuration settings from environment variables. Example environment variables can be found in the `.env.example` file. Create a `.env` file in the root directory and populate it with your specific settings.
+
+#### `common/`
+
+This folder contains common functionalities used throughout the application:
+
+- **constants/**: Constants used across the application.
+- **database/**: Manages database services and base entities.
+- **exceptions/**: Handles application-specific exceptions.
+- **filters/**: Defines custom exception filters.
+- **interceptors/**: Implements request/response interceptors.
+- **pipes/**: Contains custom validation and transformation pipes.
+- **utils/**: Provides utility functions and helper classes.
+
+#### `scripts/`
+
+This folder contains scripts for database setup and seeding.

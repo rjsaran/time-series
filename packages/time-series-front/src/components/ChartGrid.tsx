@@ -1,5 +1,6 @@
 import React from 'react';
 import { Row, Col } from 'antd';
+
 import Chart from './Chart';
 import { FiltersState } from './Actions';
 

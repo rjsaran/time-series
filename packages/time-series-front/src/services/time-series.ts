@@ -26,7 +26,18 @@ interface ListTimeSeriesResponse {
   items: TimeSeriesDataRow[];
 }
 
-export interface GetTimeSeriesMetricsPayload {}
+export interface GetTimeSeriesMetricsPayload {
+  filter: {
+    from: string | null;
+    to: string | null;
+  };
+  group: {
+    by: {
+      interval: string;
+    };
+    computes: { type: string; path: string; as?: string }[];
+  };
+}
 
 interface GetTimeSeriesMetricsResponse {
   items: TimeSeriesMetric[];

@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import moment from 'moment';
 
-import { GetMetricsDTO } from '../dto/time-series-metrics.dto';
+import { GetMetricsDTO } from '../dtos/time-series-metrics.dto';
 import { AggregationType, IntervalType } from '../time-series.enum';
 import { TimeSeriesProcessedData } from '../time-series.entity';
 import { DATE_COLUMN } from '../time-series.constants';

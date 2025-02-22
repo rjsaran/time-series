@@ -16,7 +16,7 @@ import {
   TimeSeriesRawData,
 } from '../time-series.entity';
 import { Utils } from '../../common/utils';
-import { ListTimeSeriesDTO } from '../dto/list-time-series.dto';
+import { ListTimeSeriesDTO } from '../dtos/list-time-series.dto';
 import { DATE_COLUMN, TIME_SERIES_SCHEMA } from '../time-series.constants';
 
 @Injectable()
